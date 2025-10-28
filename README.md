@@ -97,8 +97,8 @@ Then install from:
 http://127.0.0.1:7010/manifest.json
 ```
 
-##Install in Stremio Web/Desktop
-###Using Stremio Web (requested flow)
+## Install in Stremio Web/Desktop
+### Using Stremio Web (requested flow)
 
 1. Open:
  ```cmd
