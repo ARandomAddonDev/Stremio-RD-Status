@@ -22,7 +22,7 @@ A tiny, self-hosted Stremio add-on that shows your **Real-Debrid premium days re
 ---
 
 ## Overview
-This add-on renders a single **info card** in the **Streams** tab for movies (and optionally series) indicating:
+This add-on renders a single **info card** in the **Streams** tab for movies series, channel, and tv indicating:
 - ✅ **Active** premium until *YYYY-MM-DD*  
 - ⏰ **Renew soon** when ≤ 14 days remain  
 - ❌ **Expired** when 0 days remain or no premium
