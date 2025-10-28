@@ -29,6 +29,10 @@ This add-on renders a single **info card** in the **Streams** tab for movies ser
 
 It works locally and does **not** require a remote server.
 
+### Screenshot:
+
+![Real-Debrid Status](./Real-Debrid%20Status.png)
+
 ---
 
 ## Features
