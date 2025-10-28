@@ -72,19 +72,24 @@ C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining
 cd "C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining"
 ```
 
-3. **(First time only)** Install dependencies:
+3. It is recommended to Restart Node (Nuke node process):
+  ```cmd
+  taskkill /IM node.exe /F
+  ```
+
+4. **(First time only)** Install dependencies:
   ```cmd
   npm init -y
   npm i stremio-addon-sdk node-fetch
   ```
 
-4. **Start the add-on** with your RD token:
+5. **Start the add-on** with your RD token:
 
   ```cmd
   set RD_TOKEN=PASTE_REALDEBRID_API_TOKEN_HERE && node index.js
   ```
 
-5. You should see:
+6. You should see:
 
   ```cmd
   RD add-on on http://127.0.0.1:7000/manifest.json
