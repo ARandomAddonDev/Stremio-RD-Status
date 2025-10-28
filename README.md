@@ -68,7 +68,7 @@ C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining
 cd "C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining"
 ```
 
-4. **(First time only)** Install dependencies:
+3. **(First time only)** Install dependencies:
   ```cmd
   npm init -y
   npm i stremio-addon-sdk node-fetch
