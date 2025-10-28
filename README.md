@@ -1,37 +1,79 @@
-Real-Debrid Status (Simple) — Stremio Add-on
+# Real-Debrid Status (Simple) — Stremio Add-on
+*Developed by **A1337User***  
 
-Developed by A1337User
+A tiny, self-hosted Stremio add-on that shows your **Real-Debrid premium days remaining** as a card in the **Streams** tab.
 
-A tiny, self-hosted Stremio add-on that shows your Real-Debrid premium days remaining as a card in the Streams tab.
+---
 
-✅ What you’ll get
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Folder Location](#folder-location)
+- [Quick Start (Windows • CMD as Administrator)](#quick-start-windows--cmd-as-administrator)
+- [Install in Stremio Web/Desktop](#install-in-stremio-webdesktop)
+- [Test the Card](#test-the-card)
+- [Nuke & Fix (Wrong Token / Stuck State)](#nuke--fix-wrong-token--stuck-state)
+- [Troubleshooting](#troubleshooting)
+- [Notes & Tips](#notes--tips)
+- [Credits](#credits)
+- [License](#license)
 
-Clear status card (Active / Renew Soon / Expired)
+---
 
-Works locally with Stremio Web/Desktop
+## Overview
+This add-on renders a single **info card** in the **Streams** tab for movies (and optionally series) indicating:
+- ✅ **Active** premium until *YYYY-MM-DD*  
+- ⏰ **Renew soon** when ≤ 14 days remain  
+- ❌ **Expired** when 0 days remain or no premium
 
-Fast setup — a single index.js
+It works locally and does **not** require a remote server.
 
-🧰 Requirements
+---
 
-Windows (instructions below use CMD)
+## Features
+- **Local self-hosting** with Node.js
+- **Configurable token** via Stremio **Configure** page
+- **ENV fallback** using `RD_TOKEN`
+- **Simple one-file** setup (`index.js`)
+- **Minimal friction**: designed for copy-paste testing and use
 
-Node.js (LTS recommended) — https://nodejs.org
+---
 
-Your Real-Debrid API token
+## Requirements
+- **Windows** (these steps use `CMD`)
+- **Node.js** (LTS recommended) → https://nodejs.org
+- Your **Real-Debrid API token**
+  - You can paste it in Stremio **Configure**, or set it as an **environment variable** (`RD_TOKEN`).
 
-Tip: The token entered in Configure (inside Stremio) will be used if present. Otherwise, the RD_TOKEN environment variable is used.
+> [!IMPORTANT]
+> If a token is saved in **Configure**, it will be used. Otherwise, the server falls back to the `RD_TOKEN` environment variable.
 
-🚀 Quick Start (Windows • CMD as Administrator)
+---
 
-Open CMD → Run as Administrator
+## Folder Location
+Use your real path. Example path used in these instructions:
 
-Go to your folder (adjust the path if needed):
-
-cd "C:\Users\theva\Desktop\Stremio Addons\Development\DaysRemaining"
+C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining
 
 
-Start the add-on with your RD token (one-liner):
+---
+
+## Quick Start (Windows • CMD as Administrator)
+
+1. **Open CMD** → **Run as Administrator**
+
+2. **Change directory** to your add-on folder:
+   ```cmd
+   cd "C:\Users\theva\Desktop\Stremio Addons\Development\DaysRemaining"
+
+(First time only) Install dependencies:
+
+npm init -y
+npm i stremio-addon-sdk node-fetch
+
+
+Start the add-on with your RD token:
 
 set RD_TOKEN=PASTE_REALDEBRID_API_TOKEN_HERE && node index.js
 
@@ -41,75 +83,106 @@ You should see:
 RD add-on on http://127.0.0.1:7000/manifest.json
 
 
-Install in Stremio Web
-Open: https://web.stremio.com/#/addons? → Install via URL → paste:
+[!TIP]
+If port 7000 is busy, use another:
+
+set PORT=7010 && set RD_TOKEN=PASTE_REALDEBRID_API_TOKEN_HERE && node index.js
+
+
+Then install from:
+
+http://127.0.0.1:7010/manifest.json
+
+Install in Stremio Web/Desktop
+Using Stremio Web (requested flow)
+
+Open:
+
+https://web.stremio.com/#/addons?
+
+
+Click Install via URL (or the + Add icon).
+
+Paste your local URL (shown in the console), for example:
 
 http://127.0.0.1:7000/manifest.json
 
 
-Press “Configure” in the add-on card
-Paste your Real-Debrid Token again in the Real-Debrid Token field → Save.
+Click the add-on card → Configure.
 
-Press “Install”
-Stremio Web will prompt to open the Stremio application → click Open Stremio → finally click Install inside the app.
+Paste your Real-Debrid Token in the Real-Debrid Token field → Save.
 
-Test it
-Open any movie/series → Streams tab → look for ⭐ RD Status.
-It should show your Real-Debrid account stats (days remaining / expiration date).
+Click Install.
 
-📌 Notes
+Your browser may prompt to Open Stremio (desktop app) → click Open Stremio → then click Install again in the app.
 
-Config vs ENV: If a token is saved in Configure, it takes priority. If not, the add-on uses RD_TOKEN from your CMD session.
+Using Stremio Desktop (recommended for localhost)
 
-Localhost: The add-on runs at http://127.0.0.1:7000/manifest.json. Keep CMD open while testing.
+Open the Stremio Desktop app.
 
-Where it appears: In the Streams tab as an info card (no playback links).
+Go to Add-ons → Community → Install via URL.
 
-🧯 “Nuke & Fix” (wrong token or stuck state)
+Paste:
 
-If you pasted the wrong token or things seem stale, do this:
-
-Kill Node (close/restart the server):
-
-taskkill /IM node.exe /F
+http://127.0.0.1:7000/manifest.json
 
 
-Clear the environment token (optional, if you set it earlier):
+Click the add-on → Configure → paste your Real-Debrid Token → Save → Install.
 
-set RD_TOKEN=
+[!NOTE]
+If Stremio Web blocks http:// localhost (mixed content), switch to the Desktop app for local testing.
 
+Test the Card
 
-Restart with the correct token:
+Open any movie (or series, if you enabled it) in Stremio.
 
-cd "C:\Users\theva\Desktop\Stremio Addons\Development\DaysRemaining"
-set RD_TOKEN=PASTE_CORRECT_TOKEN_HERE && node index.js
+Go to the Streams tab.
 
+Look for ⭐ RD Status.
 
-(If still stale) In Stremio Web/Desktop: Uninstall the add-on → Install via URL again.
-Advanced: You can also bump manifest.version in index.js to force a refresh.
+Expected titles:
 
-🧪 What you should see (expected titles)
-
-✅ Premium: YYYY-MM-DD (XX D) — active
+✅ Premium: YYYY-MM-DD (XX D) — active premium
 
 ⏰ Renew soon: XX D left — 14 days or less
 
-❌ Expired — no premium time left
+❌ Expired — no premium or time left
 
-🛠 Troubleshooting
+Nuke & Fix (Wrong Token / Stuck State)
+1) Kill Node (clean restart)
+taskkill /IM node.exe /F
 
-“Configure your RD token” card shows up
-→ No token detected. Paste it in Configure or relaunch with RD_TOKEN.
+2) Clear the environment token (optional)
 
-Config seems ignored
+If you set RD_TOKEN in the current CMD session, clear it:
 
-Make sure you installed from the same URL/port you’re running.
+set RD_TOKEN=
 
-Uninstall duplicate copies of the add-on.
+3) Relaunch with the correct token
+cd "C:\Users\theva\Desktop\Stremio Addons\Development\DaysRemaining"
+set RD_TOKEN=PASTE_CORRECT_TOKEN_HERE && node index.js
+
+4) If Stremio looks stale
+
+Uninstall the add-on and reinstall via URL, or
+
+Bump manifest.version in index.js (e.g., 1.4.0 → 1.4.1) and restart Node.
+
+Troubleshooting
+
+[!WARNING]
+“Configure your RD token” card
+No token detected. Paste a token in Configure, or launch with RD_TOKEN.
+
+Config feels ignored
+
+Ensure you installed from the same URL/port you’re running.
+
+Uninstall duplicates of the add-on (old ports/IDs).
 
 Keep manifest.id stable between runs.
 
-If you set RD_TOKEN in CMD, it’s fine — but the Configure token should still take effect once saved.
+Clear RD_TOKEN so you’re only testing the Configure token.
 
 Port already in use
 
@@ -120,22 +193,34 @@ Then install from:
 
 http://127.0.0.1:7010/manifest.json
 
-📂 Project Structure (minimal)
-DaysRemaining/
-└─ index.js
 
-🙌 Credits
+Stremio Web (browser) can’t reach localhost
+
+Use Stremio Desktop for local testing, or run your add-on over HTTPS.
+
+Notes & Tips
+
+Where it appears: in the Streams tab as an info card (no playback links).
+
+Movies vs Series: the default manifest uses types: ["movie"] to reduce noise.
+To also show on series, edit index.js:
+
+// In the manifest:
+types: ["movie", "series"]
+
+
+Token safety: treat your RD token like a password.
+Do not commit it to Git. Prefer the Configure page or a temporary RD_TOKEN per session.
+
+Credits
 
 Developed by A1337User
 
-Built with stremio-addon-sdk + node-fetch
+Built with stremio-addon-sdk
+ + node-fetch
 
-🔐 Token Safety
+License
 
-Treat your Real-Debrid token like a password.
+This project is provided “as-is,” without warranty of any kind. Review and adapt to your use-case and jurisdiction. See LICENSE if provided.
 
-Do not commit it to GitHub.
 
-Prefer entering it in Stremio Configure, or set it per-session via RD_TOKEN in CMD.
-
-Happy streaming — and may your “Renew Soon” never catch you off-guard!
