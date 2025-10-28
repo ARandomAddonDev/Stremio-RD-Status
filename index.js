@@ -158,7 +158,7 @@ function buildStatusCard(user, { showUsername }) {
 //      `types: ["movie", "series"]`.
 // ============================================================================
 const manifest = {
-  id: "dev.rdstatus.overlay",
+  id: "a1337user.rdstatus.overlay",
   version: "1.0.0",
   name: "Real-Debrid Status",
   description:
@@ -282,4 +282,5 @@ builder.defineStreamHandler(async (args) => {
 // ============================================================================
 const PORT = Number(process.env.PORT || 7000);
 serveHTTP(builder.getInterface(), { port: PORT, hostname: "0.0.0.0" });
+
 console.log(`RD add-on on http://127.0.0.1:${PORT}/manifest.json`);
