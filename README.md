@@ -1,5 +1,4 @@
-# Real-Debrid Status
-### *A **Self-Hosted** Stremio Add-on*
+# Real-Debrid Status ### *A **Self-Hosted** Stremio Add-on*
 *Developed by **A1337User***  
 
 A tiny, self-hosted Stremio add-on that shows your **Real-Debrid premium days remaining** as a card in the **Streams** tab.
