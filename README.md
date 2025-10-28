@@ -71,27 +71,33 @@ C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining
   ```cmd
   npm init -y
   npm i stremio-addon-sdk node-fetch
+  ```
 
 4. **Start the add-on** with your RD token:
+
   ```cmd
   set RD_TOKEN=PASTE_REALDEBRID_API_TOKEN_HERE && node index.js
-
+  ```
 
 5. You should see:
- ```cmd
-RD add-on on http://127.0.0.1:7000/manifest.json
 
+   ```cmd
+  RD add-on on http://127.0.0.1:7000/manifest.json
+  ```
 ---
+
+```
 
 [!TIP]
 If port 7000 is busy, use another:
- ```cmd
+
+```cmd
 set PORT=7010 && set RD_TOKEN=PASTE_REALDEBRID_API_TOKEN_HERE && node index.js
-
-
+```
 Then install from:
  ```cmd
 http://127.0.0.1:7010/manifest.json
+```
 
 ##Install in Stremio Web/Desktop
 ###Using Stremio Web (requested flow)
@@ -99,12 +105,14 @@ http://127.0.0.1:7010/manifest.json
 1. Open:
  ```cmd
 https://web.stremio.com/#/addons?
+```
 
 2. Click Install via URL (or the + Add icon).
 
 3. Paste your local URL (shown in the console), for example:
  ```cmd
 http://127.0.0.1:7000/manifest.json
+```
 
 4. Click the add-on card → Configure.
 
@@ -123,12 +131,14 @@ http://127.0.0.1:7000/manifest.json
 3. Paste:
  ```cmd
 http://127.0.0.1:7000/manifest.json
-
+```
 
 4. Click the add-on → Configure → paste your Real-Debrid Token → Save → Install.
 
 [!NOTE]
 If Stremio Web blocks http:// localhost (mixed content), switch to the Desktop app for local testing.
+
+---
 
 ## Test the Card
 
@@ -146,21 +156,26 @@ If Stremio Web blocks http:// localhost (mixed content), switch to the Desktop a
 
 ❌ Expired — no premium or time left
 
+---
+
 ## Nuke & Fix (Wrong Token / Stuck State)
 1) Kill Node (clean restart)
  ```cmd
 taskkill /IM node.exe /F
+```
 
 2) Clear the environment token (optional)
 
 If you set RD_TOKEN in the current CMD session, clear it:
  ```cmd
 set RD_TOKEN=
+```
 
 3) Relaunch with the correct token
  ```cmd
 cd "C:\Users\theva\Desktop\Stremio Addons\Development\DaysRemaining"
 set RD_TOKEN=PASTE_CORRECT_TOKEN_HERE && node index.js
+```
 
 4) If Stremio looks stale
 
@@ -168,58 +183,62 @@ Uninstall the add-on and reinstall via URL, or
 
 Bump manifest.version in index.js (e.g., 1.4.0 → 1.4.1) and restart Node.
 
-Troubleshooting
+---
+
+## Troubleshooting
 
 [!WARNING]
 “Configure your RD token” card
 No token detected. Paste a token in Configure, or launch with RD_TOKEN.
 
 Config feels ignored
-
-Ensure you installed from the same URL/port you’re running.
-
-Uninstall duplicates of the add-on (old ports/IDs).
-
-Keep manifest.id stable between runs.
-
-Clear RD_TOKEN so you’re only testing the Configure token.
+- Ensure you installed from the same URL/port you’re running.
+- Uninstall duplicates of the add-on (old ports/IDs).
+- Keep manifest.id stable between runs.
+- Clear RD_TOKEN so you’re only testing the Configure token.
 
 Port already in use
-
+```cmd
 set PORT=7010 && set RD_TOKEN=YOUR_TOKEN && node index.js
-
+```
 
 Then install from:
-
+```cmd
 http://127.0.0.1:7010/manifest.json
+```
 
 
 Stremio Web (browser) can’t reach localhost
 
-Use Stremio Desktop for local testing, or run your add-on over HTTPS.
+- Use Stremio Desktop for local testing, or run your add-on over HTTPS.
 
-Notes & Tips
+---
 
-Where it appears: in the Streams tab as an info card (no playback links).
+## Notes & Tips
 
-Movies vs Series: the default manifest uses types: ["movie"] to reduce noise.
-To also show on series, edit index.js:
+- Where it appears: in the Streams tab as an info card (no playback links).
+- Movies vs Series: the default manifest uses types: ["movie"] to reduce noise.
+  To also show on series, edit index.js:
 
+```cmd
 // In the manifest:
 types: ["movie", "series"]
+```
 
+- Token safety: treat your RD token like a password.
+- Do not commit it to Git. Prefer the Configure page or a temporary RD_TOKEN per session.
 
-Token safety: treat your RD token like a password.
-Do not commit it to Git. Prefer the Configure page or a temporary RD_TOKEN per session.
+---
 
-Credits
+## Credits
 
-Developed by A1337User
-
-Built with stremio-addon-sdk
+- Developed by A1337User
+- Built with stremio-addon-sdk
  + node-fetch
 
-License
+---
+
+## License
 
 This project is provided “as-is,” without warranty of any kind. Review and adapt to your use-case and jurisdiction. See LICENSE if provided.
 
