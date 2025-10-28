@@ -65,82 +65,80 @@ C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining
 
 2. **Change directory** to your add-on folder:
    ```cmd
-   cd "C:\Users\theva\Desktop\Stremio Addons\Development\DaysRemaining"
+   cd "C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining"
 
-(First time only) Install dependencies:
+3. **(First time only)** Install dependencies:
+  ```cmd
+  npm init -y
+  npm i stremio-addon-sdk node-fetch
 
-npm init -y
-npm i stremio-addon-sdk node-fetch
+4. **Start the add-on** with your RD token:
+  ```cmd
+  set RD_TOKEN=PASTE_REALDEBRID_API_TOKEN_HERE && node index.js
 
 
-Start the add-on with your RD token:
-
-set RD_TOKEN=PASTE_REALDEBRID_API_TOKEN_HERE && node index.js
-
-
-You should see:
-
+5. You should see:
+ ```cmd
 RD add-on on http://127.0.0.1:7000/manifest.json
 
+---
 
 [!TIP]
 If port 7000 is busy, use another:
-
+ ```cmd
 set PORT=7010 && set RD_TOKEN=PASTE_REALDEBRID_API_TOKEN_HERE && node index.js
 
 
 Then install from:
-
+ ```cmd
 http://127.0.0.1:7010/manifest.json
 
-Install in Stremio Web/Desktop
-Using Stremio Web (requested flow)
+##Install in Stremio Web/Desktop
+###Using Stremio Web (requested flow)
 
-Open:
-
+1. Open:
+ ```cmd
 https://web.stremio.com/#/addons?
 
+2. Click Install via URL (or the + Add icon).
 
-Click Install via URL (or the + Add icon).
+3. Paste your local URL (shown in the console), for example:
+ ```cmd
+http://127.0.0.1:7000/manifest.json
 
-Paste your local URL (shown in the console), for example:
+4. Click the add-on card → Configure.
 
+5. Paste your Real-Debrid Token in the Real-Debrid Token field → Save.
+
+6. Click Install.
+
+7. Your browser may prompt to Open Stremio (desktop app) → click Open Stremio → then click Install again in the app.
+
+## Using Stremio Desktop (recommended for localhost)
+
+1. Open the Stremio Desktop app.
+
+2. Go to Add-ons → Community → Install via URL.
+
+3. Paste:
+ ```cmd
 http://127.0.0.1:7000/manifest.json
 
 
-Click the add-on card → Configure.
-
-Paste your Real-Debrid Token in the Real-Debrid Token field → Save.
-
-Click Install.
-
-Your browser may prompt to Open Stremio (desktop app) → click Open Stremio → then click Install again in the app.
-
-Using Stremio Desktop (recommended for localhost)
-
-Open the Stremio Desktop app.
-
-Go to Add-ons → Community → Install via URL.
-
-Paste:
-
-http://127.0.0.1:7000/manifest.json
-
-
-Click the add-on → Configure → paste your Real-Debrid Token → Save → Install.
+4. Click the add-on → Configure → paste your Real-Debrid Token → Save → Install.
 
 [!NOTE]
 If Stremio Web blocks http:// localhost (mixed content), switch to the Desktop app for local testing.
 
-Test the Card
+## Test the Card
 
-Open any movie (or series, if you enabled it) in Stremio.
+1. Open any movie (or series, if you enabled it) in Stremio.
 
-Go to the Streams tab.
+2. Go to the Streams tab.
 
-Look for ⭐ RD Status.
+3. Look for ⭐ RD Status.
 
-Expected titles:
+### Expected titles:
 
 ✅ Premium: YYYY-MM-DD (XX D) — active premium
 
@@ -148,17 +146,19 @@ Expected titles:
 
 ❌ Expired — no premium or time left
 
-Nuke & Fix (Wrong Token / Stuck State)
+## Nuke & Fix (Wrong Token / Stuck State)
 1) Kill Node (clean restart)
+ ```cmd
 taskkill /IM node.exe /F
 
 2) Clear the environment token (optional)
 
 If you set RD_TOKEN in the current CMD session, clear it:
-
+ ```cmd
 set RD_TOKEN=
 
 3) Relaunch with the correct token
+ ```cmd
 cd "C:\Users\theva\Desktop\Stremio Addons\Development\DaysRemaining"
 set RD_TOKEN=PASTE_CORRECT_TOKEN_HERE && node index.js
 
