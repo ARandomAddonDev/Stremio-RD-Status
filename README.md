@@ -64,10 +64,11 @@ C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining
 1. **Open CMD** → **Run as Administrator**
 
 2. **Change directory** to your add-on folder:
-   ```cmd
-   cd "C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining"
+```cmd
+cd "C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining"
+```
 
-3. **(First time only)** Install dependencies:
+4. **(First time only)** Install dependencies:
   ```cmd
   npm init -y
   npm i stremio-addon-sdk node-fetch
