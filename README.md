@@ -81,12 +81,10 @@ C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining
 
 5. You should see:
 
-   ```cmd
+  ```cmd
   RD add-on on http://127.0.0.1:7000/manifest.json
   ```
 ---
-
-```
 
 [!TIP]
 If port 7000 is busy, use another:
