@@ -241,8 +241,7 @@ types: ["movie", "series"]
 ## Credits
 
 - Developed by A1337User
-- Built with stremio-addon-sdk
- + node-fetch
+- Built with stremio-addon-sdk and node-fetch
 
 ---
 
