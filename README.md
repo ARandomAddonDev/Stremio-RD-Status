@@ -78,6 +78,10 @@ cd "C:\Users\a1337user\Desktop\Stremio Addons\Development\DaysRemaining"
   taskkill /IM node.exe /F
   ```
 
+  Note: If process found and eliminated, great. Proceed. IF no processes found, great. Proceed.
+  Either way, proceed.
+
+
 4. **(First time only)** Install dependencies:
   ```cmd
   npm init -y
